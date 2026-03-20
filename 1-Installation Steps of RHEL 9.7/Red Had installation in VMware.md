@@ -34,7 +34,7 @@
     👉 4 cores minimum
     
 - **Disk**:  
-    👉 40 GB (thin provision)
+    👉 70 GB (thin provision)
     
 - **Network**:  
     👉 NAT (for internet)  
