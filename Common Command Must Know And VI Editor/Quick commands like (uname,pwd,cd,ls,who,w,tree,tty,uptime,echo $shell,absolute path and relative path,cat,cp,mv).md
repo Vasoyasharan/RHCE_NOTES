@@ -231,6 +231,3 @@ cat -n file.txt
     
 
 ---
-
-If you want next level:  
-👉 I’ll give you **real Linux admin scenarios (file + permission + users)** — not this basic stuff 🚀
