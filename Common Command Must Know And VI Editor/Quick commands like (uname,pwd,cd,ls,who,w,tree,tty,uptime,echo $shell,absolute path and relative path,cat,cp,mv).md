@@ -15,7 +15,7 @@ uname -s      # OS name
 
 ---
 
-# ⚡ 2. `pwd` (Current Directory)
+# ⚡ 2. `pwd` (Print Working Directory)(Current Directory)
 
 ```bash
 pwd           # normal
