@@ -6,6 +6,7 @@
 ```bash
 rpm [OPTIONS] [PACKAGE]
 ```
+![](https://www.redhat.com/rhdc/managed-files/sysadmin/2020-04/p2.png)
 
 ---
 
