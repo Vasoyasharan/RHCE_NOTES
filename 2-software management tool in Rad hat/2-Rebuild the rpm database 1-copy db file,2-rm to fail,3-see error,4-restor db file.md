@@ -157,7 +157,7 @@ rpm -qa
 
 ```bash
 rm -rf /var/lib/rpm/*
-cp -av /root/rpm-backup/* /var/lib/rpm/
+cp -rvpf /root/rpm_backup_db/* /var/lib/rpm/
 ```
 
 ---
