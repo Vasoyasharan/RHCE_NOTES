@@ -89,7 +89,7 @@ rpm -qa | head
 # 🔹 STEP 2: TAKE BACKUP (CRITICAL)
 
 ```bash
-mkdir /root/rpm-backup
+mkdir /rpm_backup_db
 cp -rvpf /var/lib/rpm/* /rpm_backup_db/
 ```
 
