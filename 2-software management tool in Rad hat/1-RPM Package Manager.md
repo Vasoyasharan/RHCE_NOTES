@@ -491,6 +491,11 @@ rpm -V vsftpd
 👉 `rpm -V` = security + troubleshooting  
 👉 `--force / --nodeps` = last resort weapons
 
+
+🔥 INTERVIEW ANSWER (USE THIS EXACTLY)
+
+“RPM metadata includes package information such as installed files, versions, dependencies, scripts, and integrity data. If the RPM database is lost, the system still contains the files, but RPM loses track of all installed packages, making package management operations unreliable or impossible.”
+
 ---
 
 
