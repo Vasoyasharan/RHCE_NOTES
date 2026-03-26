@@ -18,6 +18,46 @@ The **RPM database (`rpmdb.sqlite`)** is the brain of your package manager (`dnf
 
 ---
 
+# ❌ WHY YOU ARE NOT GETTING THAT ERROR
+
+![](https://github.com/Vasoyasharan/RHCE_NOTES/blob/main/image/rebuild%20RPM/1.png?raw=true)
+
+👉 **Berkeley DB (old RPM DB format)** errors
+Example:
+
+cannot open Packages database in /var/lib/rpm  
+unexpected file type or format
+
+---
+
+# ⚠️ YOUR SYSTEM IS DIFFERENT
+
+You are using:
+
+👉 **SQLite-based RPM DB (RHEL 8 / 9)**
+
+From your screen:
+
+rpmdb.sqlite  
+rpmdb.sqlite-shm  
+rpmdb.sqlite-wal
+
+👉 So:
+
+- You WON’T get `Packages` file errors ❌
+- You WILL get SQLite-related behavior ✅
+
+---
+
+# 🧠 REALITY CHECK
+
+👉 That error screenshot = **OLD SYSTEM (RHEL 7)**  
+👉 Your lab = **NEW SYSTEM (RHEL 9)**
+
+So stop trying to force same error. It won’t happen.
+
+---
+
 # 🎯 OBJECTIVE
 
 To simulate RPM database failure scenarios and recover the system using backup and rebuild methods.
@@ -88,7 +128,37 @@ rpm -qa
 ### 🧠 Explanation:
 
 **What happens if RPM DB is deleted?**
-> **RPM automatically recreates** an **empty database** on **next query** such as **`rpm -qa`**, but all package metadata is lost, making package management unusable until restored or rebuilt.
+> **RPM automatically recreates** an **empty database** on **next query** such as **`rpm -qa`**, but **all package metadata is lost**, making package management unusable until restored or rebuilt.
+
+### All package metadata is lost
+
+1️⃣ PACKAGE NAME & VERSION
+
+Example:
+`
+ bash-5.1.8-6.el9.x86_64
+`
+
+👉 RPM knows:
+
+package name
+version
+architecture
+
+---
+2️⃣ FILE LIST (VERY IMPORTANT)
+
+`
+rpm -ql bash
+`
+
+👉 Metadata stores:
+
+- /bin/bash
+
+- /usr/share/doc/...
+
+👉 Without DB → RPM doesn’t know these files belong to bash
 
 ---
 
@@ -121,7 +191,8 @@ rpm -qa
 - DB exists but is unreadable
     
 - RPM fails to query packages
-    
+
+    ![](https://github.com/Vasoyasharan/RHCE_NOTES/blob/main/image/rebuild%20RPM/error.png?raw=true)
 
 ---
 
@@ -182,6 +253,8 @@ yum list installed | head
 👉 Packages should appear again  
 👉 System is restored
 
+![](https://github.com/Vasoyasharan/RHCE_NOTES/blob/main/image/rebuild%20RPM/restor.png?raw=true)
+
 ---
 
 # ⚠️ KEY LEARNINGS (IMPORTANT)
@@ -216,6 +289,7 @@ If RPM DB is lost:
 - System becomes unmanageable
     
 - Requires backup or rebuild
+
     
 
 ---
