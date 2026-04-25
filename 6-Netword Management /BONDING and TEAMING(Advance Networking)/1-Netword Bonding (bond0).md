@@ -430,4 +430,4 @@ default via 192.168.68.2 dev ens160 proto dhcp src 192.168.68.114 metric 100
  
 ### Part B — Network Teaming (team0)
 
-LIKE:[]
+![LIKE](https://github.com/Vasoyasharan/RHCE_NOTES/blob/main/6-Netword%20Management%20/BONDING%20and%20TEAMING(Advance%20Networking)/2-Network%20Teaming%20(team0).md)
