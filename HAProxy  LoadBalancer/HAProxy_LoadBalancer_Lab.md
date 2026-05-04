@@ -79,50 +79,56 @@ It distributes incoming network traffic across multiple backend servers so that 
 ---
 
 ### 🔴 STEP 1 — Install Apache Web Server on REDHAT (192.168.102.140)
+### 🖥️ On BOTH servers (REDHAT & Clone1)
 
-> ⚠️ **Do this on: REDHAT VM**
+### Install Apache + PHP
 
 ```bash
-# Install Apache
-dnf install httpd -y
-
-# Start and enable Apache
-systemctl start httpd
-systemctl enable httpd
-
-# Create a custom web page so we can identify this server
-echo "<h1>Welcome from REDHAT - Server 1 (192.168.102.140)</h1>" > /var/www/html/index.html
-
-# Open firewall for HTTP
-firewall-cmd --permanent --add-service=http
-firewall-cmd --reload
+yum install httpd php -y
 ```
-
-**Expected Output:**
-```
-Created symlink /etc/systemd/system/multi-user.target.wants/httpd.service
-```
-
-**Why?** The client will send HTTP requests. Apache serves those requests on port 80. We add a unique message so we know *which* server responded.
 
 ---
 
-### 🟡 STEP 2 — Install Apache Web Server on Clone1 (192.168.102.142)
+### Create Web Page
 
-> ⚠️ **Do this on: Clone1 VM**
+#### 🔹 Server 1 (192.168.102.140)
 
 ```bash
-# Install Apache
-dnf install httpd -y
+vi /var/www/html/index.php
+```
 
-# Start and enable Apache
-systemctl start httpd
-systemctl enable httpd
+```php
+<?php
+echo "Server 1 - REDHAT\n";
+echo shell_exec("hostname -I");
+?>
+```
 
-# Create a custom web page to identify this server
-echo "<h1>Welcome from Clone1 - Server 2 (192.168.102.142)</h1>" > /var/www/html/index.html
+---
+
+#### 🔹 Server 2 (192.168.102.142)
+
+```bash
+vi /var/www/html/index.php
+```
+
+```php
+<?php
+echo "Server 2 - Clone1\n";
+echo shell_exec("hostname -I");
+?>
+```
+
+---
+
+### Start Service
+
+```bash
+systemctl enable httpd --now
+```
 
 # Open firewall for HTTP
+```
 firewall-cmd --permanent --add-service=http
 firewall-cmd --reload
 ```
